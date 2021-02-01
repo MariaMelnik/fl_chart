@@ -814,6 +814,9 @@ class BarTouchedSpot extends TouchedSpot with EquatableMixin {
   final BarChartRodData touchedRodData;
   final int touchedRodDataIndex;
 
+  final Offset touchedBarTopLeftCorner;
+  final Offset touchedBarBottomRightCorner;
+
   /// It can be null, if nothing found
   final BarChartRodStackItem touchedStackItem;
 
@@ -828,16 +831,18 @@ class BarTouchedSpot extends TouchedSpot with EquatableMixin {
   /// ([touchedStackItemIndex] means nothing found).
   /// You can also have the touched x and y in the chart as a [FlSpot] using [spot] value,
   /// and you can have the local touch coordinates on the screen as a [Offset] using [offset] value.
-  BarTouchedSpot(
-    BarChartGroupData touchedBarGroup,
-    int touchedBarGroupIndex,
-    BarChartRodData touchedRodData,
-    int touchedRodDataIndex,
-    BarChartRodStackItem touchedStackItem,
-    int touchedStackItemIndex,
-    FlSpot spot,
-    Offset offset,
-  )   : touchedBarGroup = touchedBarGroup,
+  BarTouchedSpot({
+    @required BarChartGroupData touchedBarGroup,
+    @required int touchedBarGroupIndex,
+    @required BarChartRodData touchedRodData,
+    @required int touchedRodDataIndex,
+    @required BarChartRodStackItem touchedStackItem,
+    @required int touchedStackItemIndex,
+    @required FlSpot spot,
+    @required Offset offset,
+    @required this.touchedBarTopLeftCorner,
+    @required this.touchedBarBottomRightCorner
+  })   : touchedBarGroup = touchedBarGroup,
         touchedBarGroupIndex = touchedBarGroupIndex,
         touchedRodData = touchedRodData,
         touchedRodDataIndex = touchedRodDataIndex,
