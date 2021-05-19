@@ -1381,7 +1381,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData>
   LineTouchResponse handleTouch(FlTouchInput touchInput, Size size) {
     /// it holds list of nearest touched spots of each line
     /// and we use it to draw touch stuff on them
-    final List<LineBarSpot> touchedSpots = [];
+    final Map<LineBarSpot, Offset> touchedSpots = {};
 
     /// draw each line independently on the chart
     for (int i = 0; i < data.lineBarsData.length; i++) {
@@ -1391,7 +1391,12 @@ class LineChartPainter extends AxisChartPainter<LineChartData>
       final LineBarSpot foundTouchedSpot =
           _getNearestTouchedSpot(size, touchInput.getOffset(), barData, i);
       if (foundTouchedSpot != null) {
-        touchedSpots.add(foundTouchedSpot);
+        final Size chartViewSize = getChartUsableDrawSize(size);
+        final foundTouchedSpotOffset = Offset(
+            getPixelX(foundTouchedSpot.x, chartViewSize),
+            getPixelY(foundTouchedSpot.y, chartViewSize),
+        );
+        touchedSpots[foundTouchedSpot] = foundTouchedSpotOffset;
       }
     }
 

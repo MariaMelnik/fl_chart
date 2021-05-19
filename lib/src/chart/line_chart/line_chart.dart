@@ -193,12 +193,13 @@ class _LineChartState extends AnimatedWidgetBaseState<LineChart> {
         touchResponse.touchInput is FlLongPressStart ||
         touchResponse.touchInput is FlLongPressMoveUpdate) {
       setState(() {
-        final sortedLineSpots = List.of(touchResponse.lineBarSpots);
+        final sortedLineSpots = List.of(touchResponse.lineBarSpots.keys);
         sortedLineSpots.sort((spot1, spot2) => spot2.y.compareTo(spot1.y));
 
         _showingTouchedIndicators.clear();
-        for (int i = 0; i < touchResponse.lineBarSpots.length; i++) {
-          final touchedBarSpot = touchResponse.lineBarSpots[i];
+        final touchedSpots = touchResponse.lineBarSpots.keys.toList();
+        for (int i = 0; i < touchedSpots.length; i++) {
+          final touchedBarSpot = touchedSpots[i];
           final barPos = touchedBarSpot.barIndex;
           _showingTouchedIndicators[barPos] = [touchedBarSpot.spotIndex];
         }

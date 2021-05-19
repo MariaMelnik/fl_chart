@@ -1670,7 +1670,7 @@ class ShowingTooltipIndicators with EquatableMixin {
 class LineTouchResponse extends BaseTouchResponse with EquatableMixin {
   /// touch happened on these spots
   /// (if a single line provided on the chart, [lineBarSpots]'s length will be 1 always)
-  final List<LineBarSpot> lineBarSpots;
+  final Map<LineBarSpot, Offset> lineBarSpots;
 
   /// If touch happens, [LineChart] processes it internally and
   /// passes out a list of [lineBarSpots] it gives you information about the touched spot.
