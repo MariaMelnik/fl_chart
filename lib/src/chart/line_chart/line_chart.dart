@@ -85,12 +85,12 @@ class _LineChartState extends AnimatedWidgetBaseState<LineChart> {
         if (chartSize == null) {
           return;
         }
-
-        final LineTouchResponse response = _touchHandler?.handleTouch(
-            FlPanEnd(Offset.zero, const Velocity(pixelsPerSecond: Offset.zero)), chartSize);
-        if (_canHandleTouch(response, touchData)) {
-          touchData.touchCallback(response);
-        }
+        //
+        // final LineTouchResponse response = _touchHandler?.handleTouch(
+        //     FlPanEnd(Offset.zero, const Velocity(pixelsPerSecond: Offset.zero)), chartSize);
+        // if (_canHandleTouch(response, touchData)) {
+        //   touchData.touchCallback(response);
+        // }
       },
       onPanEnd: (DragEndDetails details) {
         final Size chartSize = _getChartSize();
